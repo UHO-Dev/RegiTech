@@ -1,0 +1,109 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Aprobaci&oacute;n){% endblock %}
+
+{% block titulo %}<b class="text-success">Aprobaci&oacute;n de Expedientes</b>{% endblock %}
+
+{% block main %}
+
+    <nav class="pt-2">
+        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+            <button class="nav-link active" style="color:black;" id="nav-pendiente-tab" data-bs-toggle="tab" data-bs-target="#nav-pendiente" type="button" role="tab" aria-controls="nav-pendiente" aria-selected="true"><i class=""></i><b>Pendiente</b></button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-pendiente" role="tabpanel" aria-labelledby="nav-pendiente-tab">
+            <div class="table-responsive">
+                <table class="table table-sm" id="example">
+                    <thead class="text-dark bg-success">
+                        <tr>
+                            <th scope="col" class="col-sm-1">No</th>
+                            <th scope="col" class="col-sm-1">Inventario</th>
+                            <th scope="col" class="col-sm-3">Responsable</th>
+                            <th scope="col" class="col-sm-2">Estado T&eacute;cnico</th>
+                            <th scope="col" class="col-sm-3">Suministrador</th>
+                            <th scope="col" class="col-sm-1">Aprobaci&oacute;n</th>
+                            <th scope="col" class="col-sm-1">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-dark">
+                        {% for recurso in exp_pendientes %}
+                                <tr>
+                                    <td>
+                                        <b>{{ forloop.counter }}</b>
+
+                                    </td>
+                                    <td>
+                                        <b>{{ recurso.inventario }}</b>
+                                    </td>
+                                    <td>
+                                        <b>
+                                        {% if recurso.responsable == 'Por Definir' %}
+                                            <span class="badge bg-danger rounded-pill">
+                                                Definir
+                                            </span>
+                                        {% else %}
+                                            {{ recurso.responsable }}
+                                        {% endif %}
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <b>
+                                        {% if recurso.estado == 'Funcionando' %}
+                                            <span class="badge bg-success rounded-pill text-dark">
+                                                {{ recurso.estado }}
+                                            </span>
+                                        {% elif recurso.estado == 'Roto' %}
+                                            <span class="badge bg-warning rounded-pill text-dark">
+                                                {{ recurso.estado }}
+                                            </span>
+                                        {% elif recurso.estado == 'Solicitud de Baja' %}
+                                            <span class="badge bg-danger rounded-pill text-dark">
+                                                {{ recurso.estado }}
+                                            </span>
+                                        {% elif recurso.estado == 'Stock' %}
+                                            <span class="badge bg-primary rounded-pill text-dark">
+                                                {{ recurso.estado }}
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-dark rounded-pill text-white">
+                                                {{ recurso.estado }}
+                                            </span>
+                                        {% endif %}
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <b>
+                                        {% if recurso.suministrador == 'Por Definir' %}
+                                            <span class="badge bg-danger rounded-pill">
+                                                {{ recurso.suministrador }}
+                                            </span>
+                                        {% else %}
+                                            {{ recurso.suministrador }}
+                                        {% endif %}
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <b>
+                                        <span class="badge bg-warning rounded-pill text-dark">
+                                            {{ recurso.aprobacion }}
+                                        </span>
+                                        </b>                                       
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'AprobacionUpdate' recurso.id %}"><i class="fas fa-pen text-success"></i></a>
+                                    </td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

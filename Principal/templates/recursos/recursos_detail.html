@@ -1,0 +1,148 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Recursos){% endblock %}
+
+{% block titulo %}Detalles <b class="text-success">Recurso TICs</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'RecursoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                <div class="col-sm-6">
+                    <label class="input-group-text bg-success"><b>Responsable: </b></label>
+                    <label class="form-control">{{ recursos.responsable }}</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="input-group-text bg-success"><b>Suministrador: </b></label>
+                    <label class="form-label lead col-sm-12">
+                        {% if recursos.suministrador == 'Por Definir' %}
+                            <span class="badge bg-danger rounded-pill">
+                                {{ recursos.suministrador }}
+                            </span>
+                        {% else %}
+                            <label class="form-control">{{ recursos.suministrador }}</label>
+                        {% endif %}
+                    </label>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="input-group-text bg-success"><b>Estado T&eacute;cnico: </b></label>
+                    <label class="form-label lead">
+                        {% if recursos.estado == 'Stock' %}
+                            <span class="badge bg-primary rounded-pill">
+                                {{ recursos.estado }}
+                            </span>
+                        {% elif recursos.estado == 'Solicitud de Baja' %}
+                            <span class="badge bg-danger rounded-pill">
+                                {{ recursos.estado }}
+                            </span>
+                        {% elif recursos.estado == 'Funcionando' %}
+                            <span class="badge bg-success rounded-pill">
+                                {{ recursos.estado }}
+                            </span>
+                        {% elif recursos.estado == 'Roto' %}
+                            <span class="badge bg-warning rounded-pill">
+                                {{ recursos.estado }}
+                            </span>
+                        {% else %}
+                            <span class="badge bg-black rounded-pill">
+                                {{ recursos.estado }}
+                            </span>
+                        {% endif %}
+                    </label>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="input-group-text bg-success"><b>Tipo de Suministrador: </b></label>
+                    <label class="form-label lead">
+                        {% if recursos.tipo_suministrador == 'Seleccione...' %}
+                            <span class="badge bg-danger rounded-pill">
+                                Por Definir
+                            </span>
+                        {% elif recursos.tipo_suministrador == 'Proyecto' %}
+                            <span class="badge bg-primary rounded-pill">
+                                {{ recursos.tipo_suministrador }}
+                            </span>
+                        {% elif recursos.tipo_suministrador == 'MES' %}
+                            <span class="badge bg-black rounded-pill">
+                                {{ recursos.tipo_suministrador }}
+                            </span>
+                        {% else %}
+                            <span class="badge bg-success rounded-pill">
+                                {{ recursos.tipo_suministrador }}
+                            </span>
+                        {% endif %}
+                    </label>
+                </div>
+
+                <hr class="my-4 mb-0">
+                    
+                <div class="col-sm-4">
+                    <label class="input-group-text btn w-100 bg-success"><b>Inventario: </b></label>
+                    <label class="form-control">{{ recursos.inventario }}</label>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text btn w-100 bg-success"><b>Tipo: </b></label>
+                    <label class="form-control">{{ recursos.tipo }}</label>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text btn w-100 bg-success"><b>Centro de Costo: </b></label>
+                    <label class="form-control">{{ recursos.centro_costo }}</label>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text btn w-100 bg-success"><b>Modelo: </b></label>
+                    <label class="form-control">{{ recursos.modelo }}</label>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text btn w-100 bg-success"><b>Marca: </b></label>
+                    <label class="form-control">{{ recursos.marca }}</label>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text btn w-100 bg-success"><b>Valor(MN): </b></label>
+                    <label class="form-control">{{ recursos.valor }}</label>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text btn w-100 bg-success"><b>Fecha de Entrada: </b></label>
+                    <label class="form-control">{{ recursos.fecha_entrada }}</label>
+                </div>
+
+                <div class="col-sm-4"></div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text btn w-100 bg-success"><b>Fecha de Alta: </b></label>
+                    <label class="form-control">{{ recursos.fecha_alta }}</label>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="col-12 mt-0">
+                    <label class="input-group-text btn w-100 bg-success"><b>Descripci&oacute;n: </b></label>
+                    <label class="form-control">{{ recursos.descripcion }}</label>  
+                </div>
+        
+                <hr class="my-4">
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

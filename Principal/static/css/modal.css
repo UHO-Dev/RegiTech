@@ -1,0 +1,23 @@
+.modal-sheet .modal-dialog {
+  width: 380px;
+  transition: bottom .75s ease-in-out;
+}
+.modal-sheet .modal-footer {
+  padding-bottom: 2rem;
+}
+
+.modal-alert .modal-dialog {
+  width: 380px;
+}
+
+.modal-tour .modal-dialog {
+  width: 380px;
+}
+
+body{
+  background-color: rgb(214, 214, 214);
+}
+
+.modal-alert{
+  padding: 15%;
+}

@@ -1,0 +1,56 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Centro de Costo){% endblock %}
+
+{% block titulo %}Detalles <b class="text-success">Centro de Costo</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'CentroCostoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr>
+            <div class="row g-5">
+                    <div class="row g-5">
+                        <div class="col-sm-6 mt-0">
+                            <label for="codigo" class="input-group-text w-100 btn bg-success"><b>C&oacute;digo: </b></label>
+                            <label class="form-control">{{ centro.codigo }}</label>
+                        </div>
+                        <div class="col-sm-6 mt-0">
+                            <label for="nombre" class="input-group-text w-100 btn bg-success"><b>Sede: </b></label>
+                            <label class="form-control">{{ centro.cede }}</label>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="col-sm-12 mt-0">
+                            <label for="facultad" class="input-group-text w-100 btn bg-success"><b>Facultad: </b></label>
+                            <label class="form-control">{{ centro.facultad }}</label>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="departamento" class="input-group-text w-100 btn bg-success"><b>Departamento: </b></label>
+                            <label class="form-control">{{ centro.departamento }}</label>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="responsable" class="input-group-text w-100 btn bg-success"><b>Responsable </b></label>
+                            <label class="form-control">{{ centro.responsable }}</label>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

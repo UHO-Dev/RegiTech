@@ -1,0 +1,83 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Mantenimiento){% endblock %}
+
+{% block titulo %}Detalles <b class="text-success">Mantenimiento TICs</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'MantenimientoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <main>
+            <hr class="my-4 mb-0">
+            <div class="row g-5">
+                <div class="row g-5">
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Inventario: </b></label>
+                        <label class="form-control">{{ mantenimiento.inventario }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Orden de Servicio: </b></label>
+                        <label class="form-control">{{ mantenimiento.orden }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Responsable: </b></label>
+                        <label class="form-control">{{ mantenimiento.responsable }}</label>
+                    </div>
+            
+                    <div class="col-sm-3">
+                        <label class="input-group-text w-100 btn bg-success"><b>Fecha de Registro: </b></label>
+                        <label class="form-control">{{ mantenimiento.fecha }}</label>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="input-group-text w-100 btn bg-success"><b>Sello Quitado: </b></label>
+                        <label class="form-control">{{ mantenimiento.sello_quitado }}</label>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="input-group-text w-100 btn bg-success"><b>Sello Puesto: </b></label>
+                        <label class="form-control">{{ mantenimiento.sello_puesto }}</label>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="input-group-text w-100 btn bg-success"><b>Tipo de Mantenimiento: </b></label>
+                        <label class="form-control">{{ mantenimiento.tipo_mantenimiento }}</label>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="col-12 mt-0">
+                        <label class="input-group-text w-100 btn bg-success"><b>Datos de la Pieza: </b></label>
+                        <label class="form-control">{{ mantenimiento.datos_pieza }}</label>
+                    </div>
+                    
+                    <div class="col-6">
+                        <label class="input-group-text w-100 btn bg-success"><b>Participantes: </b></label>
+                        <label class="form-control">{{ mantenimiento.participantes }}</label>
+                    </div>
+
+                    <div class="col-6">
+                        <label class="input-group-text w-100 btn bg-success"><b>Descripci&oacute;n: </b></label>
+                        <label class="form-control">{{ mantenimiento.descripcion }}</label>
+                    </div>
+
+                    <hr class="my-4">
+                </div>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Usuario){% endblock %}
+
+{% block titulo %}A&ntilde;adir <b class="text-success">Usuario</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'AdminSite' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Sus <b>credenciales</b> no contiene los <b>requisitos</b> esenciales indicados para ser <b>segura</b>. .
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label for="username" class="input-group-text w-100 btn bg-success"><b>Nombre de Usuario: </b></label>
+                            {{form.username}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un nombre de usuario v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="email" class="input-group-text w-100 btn bg-success"><b>Correo Electr&oacute;nico: </b></label>
+                            {{form.email}}
+                            <div class="invalid-feedback">
+                                Es requerido su correo electr&oacute;nico coorporativo.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="email" class="input-group-text w-100 btn bg-success"><b>Rol: </b></label>
+                            {{form.rol}}
+                        </div>
+
+                        <hr class="my-4 mb-0">
+
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <b>Requisitos para una contrase&ntilde;a segura<i class="fas fa-lock"></i></b>
+                                    </button>
+                                </h4>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li class="list-item">Su contrase&ntilde;a no puede asemejarse tanto a su otra <b>informaci&oacute;n personal</b>.</li>
+                                            <li class="list-item">Su contrase&ntilde;a debe contener al menos <b>8 caracteres</b>.</li>
+                                            <li class="list-item">Su contrase&ntilde;a no puede ser una clave utilizada <b>com&uacute;nmente</b>.</li>
+                                            <li class="list-item">Su contrase&ntilde;a no puede ser completamente <b>num&eacute;rica.</b></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="col-sm-6 mt-0">
+                            <label for="id_password1" class="input-group-text w-100 btn bg-success"><b>Contrase&ntilde;a: </b></label>
+                            <input class="form-control" id="id_password1" type="password" name="password1" placeholder="Ingrese una contrase&ntilde;a">
+                            <div class="invalid-feedback">
+                                Es requerido una contrase&ntilde;a de al menos 8 caracteres.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 mt-0">
+                            <label for="id_password2" class="input-group-text w-100 btn bg-success"><b>Confirmaci&oacute;n: </b></label>
+                            <input class="form-control" id="id_password2" type="password" name="password2" placeholder="Confirme su contrase&ntilde;a">
+                            <div class="invalid-feedback">
+                                Las contrase&ntilde;as indicadas deben ser iguales.
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+                    <button class="w-100 btn btn-success btn-lg" type="submit"><b>Registrar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

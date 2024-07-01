@@ -1,0 +1,49 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Responsable){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">Responsables</b> {% endblock %}
+
+{% block main %}
+    <div class="row pt-2">  
+        <div class="col-sm-1"></div>
+        <div class="table-responsive col-sm-10">
+            <table class="table table-sm" id="example">
+                <thead class="text-dark bg-success">
+                    <tr>
+                        <th scope="col" class="col-sm-1">No</th>
+                        <th scope="col" class="col-sm-3">Inventario</th>
+                        <th scope="col" class="col-sm-6">Responsable</th>
+                        <th scope="col" class="col-sm-2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-dark">
+                    {% for recurso in recursos %}
+                        <tr>
+                            <td><b>{{ forloop.counter }}</b></td>
+                            <td><b>{{ recurso.inventario }}</b></td>
+                            <td><b>
+                                {% if recurso.responsable == 'Definir' %}
+                                    <span class="badge bg-danger rounded-pill">
+                                        {{ recurso.responsable }}
+                                    </span>
+                                {% else %}
+                                    {{ recurso.responsable }}
+                                {% endif %}
+                            </td></b>
+                            <td>
+                                <a href="{% url 'ResponsableUpdate' recurso.id %}"><i class="fas fa-pen text-success"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

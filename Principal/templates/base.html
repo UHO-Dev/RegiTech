@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Base{% endblock %}</title>
+
+    <link href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'libs/webfonts/css/all.min.css' %}" rel="stylesheet">
+
+    {% block css %}
+    
+    {% endblock %}
+</head>
+<body class="w-100">
+    {% block body %}
+        <h1>HTML BASE</h1>
+    {% endblock %}
+    
+    
+    <script src="{% static 'libs/bootstrap/js/jquery.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    {% block scripts %}
+    
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Resumen){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">Tipos de Incidencias</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'TipoIncidenciaCreate' %}"><b>A&ntilde;adir</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="row pt-2">  
+        <div class="col-sm-1"></div>
+        <div class="table-responsive col-sm-10">
+            <table class="table table-sm" id="example">
+                <thead class="text-dark bg-success">
+                    <tr>
+                        <th scope="col" class="col-sm-1">No</th>
+                        <th scope="col" class="col-sm-8">Nombre</th>
+                        <th scope="col" class="col-sm-3">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-dark">
+                    {% for tipo in tipos %}
+                        <tr>
+                            <td><b>{{ forloop.counter }}</b></td>
+                            <td><b>{{ tipo.nombre }}</b></td>
+                            <td>
+                                <a href="{% url 'TipoIncidenciaDetail' tipo.id %}"><i class="fas fa-eye text-primary"></i></a>
+                                <a href="{% url 'TipoIncidenciaUpdate' tipo.id %}"><i class="fas fa-pen text-success"></i></a>
+                                <a href="{% url 'TipoIncidenciaDelete' tipo.id %}"><i class="fas fa-trash text-danger"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

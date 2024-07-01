@@ -1,0 +1,77 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Usuario){% endblock %}
+
+{% block titulo %}Editar <b class="text-success">Usuario</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'AdminSite' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Ya existe un usuario con esos datos, verifiquelos.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn btn-outline-success"><b>Nombre de Usuario: </b></label>
+                            {{form.username}}
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="email" class="input-group-text w-100 btn btn-outline-success"><b>Correo Electr&oacute;nico: </b></label>
+                            {{form.email}}
+                            <div class="invalid-feedback">
+                                Es requerido su correo electr&oacute;nico coorporativo.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="email" class="input-group-text w-100 btn btn-outline-success"><b>Rol: </b></label>
+                            {{form.rol}}
+                        </div>
+
+                        <hr class="my-4 mb-0">
+
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Nombre: </b></label>
+                            <label class="form-control">{{ user.first_name }}</label>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Apellidos: </b></label>
+                            <label class="form-control">{{ user.last_name }}</label>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Carnet de Identidad: </b></label>
+                            <label class="form-control">{{ user.ci }}</label>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+                    <button class="w-100 btn btn-success btn-lg" type="submit"><b>Registrar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

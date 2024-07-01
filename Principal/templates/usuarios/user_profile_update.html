@@ -1,0 +1,89 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Usuario){% endblock %}
+
+{% block titulo %}Editar <b class="text-success">Perfil</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'UserDetailPublico' user.id %}"><b>Atr&aacute;s</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                {% if msg %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{msg}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label for="first_name" class="input-group-text w-100 btn bg-success"><b>Nombre: </b></label>
+                            {{form.first_name}}
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="last_name" class="input-group-text w-100 btn bg-success"><b>Apellidos: </b></label>
+                            {{form.last_name}}
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="ci" class="input-group-text w-100 btn bg-success"><b>Carnet de Identidad: </b></label>
+                            {{form.ci}}
+                            <div class="invalid-feedback">
+                                <b class="text-info">Es requerido un CI v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="area" class="input-group-text w-100 btn bg-success"><b>Area: </b></label>
+                            {{form.area}}
+                            <div class="invalid-feedback">
+                                Es requerido su area de trabajo.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="cargo" class="input-group-text w-100 btn bg-success"><b>Cargo: </b></label>
+                            {{form.cargo}}
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="telefono" class="input-group-text w-100 btn bg-success"><b>Tel&eacute;fono del Area: </b></label>
+                            {{form.telefono}}
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="celular" class="input-group-text w-100 btn bg-success"><b>Celular: </b></label>
+                            {{form.celular}}
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="whatsapp" class="input-group-text w-100 btn bg-success"><b>Whatsapp: </b></label>
+                            {{form.whatsapp}}
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+                    <button class="w-100 btn btn-success btn-lg" type="submit"><b>Registrar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/ValidCI.js' %}"></script>
+{% endblock %}

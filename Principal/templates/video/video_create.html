@@ -1,0 +1,65 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Componentes){% endblock %}
+
+{% block titulo %}A&ntilde;adir <b class="text-success">Tarjeta de Video</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'AlmacenList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                {% if msg %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{msg}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>    
+                {% endif %}
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label for="marca" class="input-group-text w-100 btn bg-success"><b>Marca: </b></label>
+                            {{form.marca}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido una marca v&aacute;lida.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="modelo" class="input-group-text w-100 btn bg-success"><b>Modelo: </b></label>
+                            {{form.modelo}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un modelo v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="serie" class="input-group-text w-100 btn bg-success"><b>Serie: </b></label>
+                            {{form.serie}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un n&uacute;mero de serie v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+                    <button class="w-100 btn btn-success btn-lg mt-0" type="submit"><b>Registrar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

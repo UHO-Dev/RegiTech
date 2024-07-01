@@ -1,0 +1,63 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Mantenimiento){% endblock %}
+
+{% block titulo %}Detalles <b class="text-success">Orden de Servicio</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'OrdenServicioList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <main>
+            <hr class="my-4 mb-0">
+            <div class="row g-5">
+                <div class="row g-5">
+                    <div class="col-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Orden: </b></label>
+                        <label class="form-control">TK-{{ orden.orden }}</label>
+                    </div>
+
+                    <div class="col-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Inventario: </b></label>
+                        <label class="form-control">{{ orden.inventario }}</label>
+                    </div>
+
+                    <div class="col-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Tipo de Orden: </b></label>
+                        <label class="form-control">{{ orden.tipo_orden }}</label>
+                    </div>
+
+                    <div class="col-6">
+                        <label class="input-group-text w-100 btn bg-success"><b>Fecha de Creaci&oacute;n: </b></label>
+                        <label class="form-control">{{ orden.fecha }}</label>
+                    </div>
+
+                    <div class="col-6">
+                        <label class="input-group-text w-100 btn bg-success"><b>Estado: </b></label>
+                        <label class="form-control">{{ orden.estado }}</label>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="col-12 mt-0">
+                        <label class="input-group-text w-100 btn bg-success"><b>Descripci&oacute;n: </b></label>
+                        <label class="form-control">{{ orden.descripcion }}</label>
+                    </div>
+
+                    <hr class="my-4">
+                </div>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dank text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

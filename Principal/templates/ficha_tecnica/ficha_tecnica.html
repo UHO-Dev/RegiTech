@@ -1,0 +1,39 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Administraci&oacute;n){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">Acciones</b>: {{recurso}}{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'RecursoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="table-responsive pt-2">
+        <table class="table table-sm" id="example">
+            <thead class="text-dark bg-success">
+                <tr>
+                    <th class="col-">No</th>
+                    <th class="col-">Fecha</th>
+                    <th class="col-">Usuario</th>
+                    <th class="col-">Accion</th>
+                </tr>   
+            </thead>
+            <tbody>
+                {% for logs in historial  %}
+                    <tr class="text-dark">
+                        <td><b>{{ forloop.counter }}</b></td>
+                        <td>{{ logs.history_date }}</td>
+                        <td>{{ logs.history_user }}</td>
+                        <td>
+                            <span class="badge bg-success">
+                                {{logs.history_type}}
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Centro de Costo){% endblock %}
+
+{% block titulo %}A&ntilde;adir <b class="text-success">Centro de Costo</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'CentroCostoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                {% if msg %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{msg}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>    
+                {% endif %}
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-6">
+                            <label for="codigo" class="input-group-text w-100 btn bg-success"><b>C&oacute;digo: </b></label>
+                            {{form.codigo}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un c&oacute;digo v&aacute;lido.</b>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="cede" class="input-group-text w-100 btn bg-success"><b>Sede: </b></label>
+                            {{form.cede}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="col-sm-12 mt-0">
+                            <label for="facultad" class="input-group-text w-100 btn bg-success"><b>Facultad: </b></label>
+                            {{form.facultad}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido una facultad v&aacute;lida.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label for="departamento" class="input-group-text w-100 btn bg-success"><b>Departamento: </b></label>
+                            {{form.departamento}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un departamento v&aacute;lida.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label for="responsable" class="input-group-text w-100 btn bg-success"><b>Responsable: </b></label>
+                            {{form.responsable}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un responsable v&aacute;lido.</b>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                    </div>
+                    <button class="w-100 btn btn-success btn-lg" type="submit"><b>Registrar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/ValidVal.js' %}"></script>
+{% endblock %}

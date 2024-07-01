@@ -1,0 +1,73 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Suministrador){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">Suministradores</b>{% endblock %}
+
+{% block main %}
+    <div class="row pt-2">  
+        <div class="table-responsive">
+            <table class="table table-sm" id="example">
+                <thead class="text-dark bg-success">
+                    <tr>
+                        <th scope="col" class="col-sm-1">No</th>
+                        <th scope="col" class="col-sm-1">Inventario</th>
+                        <th scope="col" class="col-sm-2">Tipo de Recurso</th>
+                        <th scope="col" class="col-sm-2">Fecha (Entrada)</th>
+                        <th scope="col" class="col-sm-4">Suministrador</th>
+                        <th scope="col" class="col-sm-1">Tipo</th>
+                        <th scope="col" class="col-sm-1">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-dark">
+                    {% for recurso in recursos %}
+                        <tr>
+                            <td><b>{{ forloop.counter }}</b></td>
+                            <td><b>{{ recurso.inventario }}</b></td>
+                            <td><b>{{ recurso.tipo }}</b></td>
+                            <td><b>{{ recurso.fecha_entrada }}</b></td>
+                            <td><b>
+                                {% if recurso.suministrador == 'Por Definir' %}
+                                    <span class="badge bg-danger rounded-pill">
+                                        {{ recurso.suministrador }}
+                                    </span>
+                                {% else %}
+                                    {{ recurso.suministrador }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if recurso.tipo_suministrador == 'Seleccione...' %}
+                                    <span class="badge bg-danger rounded-pill">
+                                        Por Definir
+                                    </span>
+                                {% elif recurso.tipo_suministrador == 'Proyecto' %}
+                                    <span class="badge bg-primary rounded-pill">
+                                        {{ recurso.tipo_suministrador }}
+                                    </span>
+                                {% elif recurso.tipo_suministrador == 'MES' %}
+                                    <span class="badge bg-black rounded-pill">
+                                        {{ recurso.tipo_suministrador }}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-success rounded-pill">
+                                        {{ recurso.tipo_suministrador }}
+                                    </span>
+                                {% endif %}</b>
+                            </td>
+                            <td>
+                                {% if recurso.aprobacion != 'Aprobado' %}
+                                    <a href="{% url 'SuministradorUpdate' recurso.id %}"><i class="fas fa-pen text-success"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

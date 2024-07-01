@@ -1,0 +1,75 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Mantenimiento){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">&Oacute;rdenes de Servicios</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'OrdenServicioCreate' %}"><b>A&ntilde;adir</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="row pt-2">  
+        <div class="table-responsive">
+            <table class="table table-sm" id="example">
+                <thead class="text-dark bg-success">
+                    <tr>
+                        <th scope="col" class="col-sm-1">No</th>
+                        <th scope="col" class="col-sm-2">Inventario</th>
+                        <th scope="col" class="col-sm-2">&Oacute;rden</th>
+                        <th scope="col" class="col-sm-1">Estado</th>
+                        <th scope="col" class="col-sm-2">Tipo</th>
+                        <th scope="col" class="col-sm-2">Creaci&oacute;n</th>
+                        <th scope="col" class="col-sm-2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-dark">
+                    {% for orden in ordenes %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ orden.inventario }}</td>
+                            <td>{{ orden }}</td>
+                            <td>
+                                <a href="{% url 'OrdenServicioEstadoUpdate' orden.orden %}" class="text-decoration-none">
+                                    <span 
+                                        class="badge 
+                                        {% if orden.estado == "Fallida"  %}
+                                            bg-danger
+                                        {% elif orden.estado == "Completada"  %}
+                                            bg-success
+                                        {% elif orden.estado == "Cancelada"  %}
+                                            bg-warning
+                                        {% elif orden.estado == "Proceso"  %}
+                                            bg-primary
+                                        {% elif orden.estado == "Rechazada"  %}
+                                            bg-secondary
+                                        {% elif orden.estado == "Aceptada"  %}
+                                            bg-success
+                                        {% else %}
+                                            bg-white text-dark
+                                        {% endif %}
+                                        " 
+                                    >
+                                        {{ orden.estado }}
+                                    </span>
+                                </a>
+                            </td>
+                            <td>{{ orden.tipo_orden }}</td>
+                            <td>{{ orden.fecha }}</td>
+                            <td>
+                                <a href="{% url 'OrdenServicioDetail' orden.orden %}"><i class="fas fa-eye text-primary"></i></a>
+                                <a href="{% url 'OrdenServicioUpdate' orden.orden %}"><i class="fas fa-pen text-success"></i></a>
+                                <a href="{% url 'OrdenServicioDelete' orden.orden %}"><i class="fas fa-trash text-danger"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

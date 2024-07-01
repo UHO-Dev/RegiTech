@@ -1,0 +1,43 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Centros de Costos){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">Centros de Costos</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'CentroCostoCreate' %}"><b>A&ntilde;adir</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="row pt-2">
+    <div class="table-responsive">
+        <table class="table table-sm text-light" id="example">
+            <thead class="bg-success text-dark">
+                <tr>
+                    <th scope="col" class="col-sm-1">No</th>
+                    <th scope="col" class="col-sm-2">C&oacute;digo</th>
+                    <th scope="col" class="col-sm-4">Cede</th>
+                    <th scope="col" class="col-sm-3">Facultad</th>
+                    <th scope="col" class="col-sm-2">Opciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-dark">
+                {% for ubicacion in centros %}
+                    <tr>
+                        <td><b>{{ forloop.counter }}</b></td>
+                        <td><b>{{ ubicacion.codigo }}</b></td>
+                        <td><b>{{ ubicacion.cede }}</b></td>
+                        <td><b>{{ ubicacion.facultad }}</b></td>
+                        <td>
+                            <a href="{% url 'CentroCostoDetail' ubicacion.id %}"><i class="fas fa-eye text-primary"></i></a>
+                            <a href="{% url 'CentroCostoUpdate' ubicacion.id %}"><i class="fas fa-pen text-success"></i></a>
+                            <a href="{% url 'CentroCostoDelete' ubicacion.id %}"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+{% endblock %}

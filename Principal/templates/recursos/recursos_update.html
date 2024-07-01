@@ -1,0 +1,134 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Recurso){% endblock %}
+
+{% block titulo %}Editar <b class="text-success">Recurso TICs</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'RecursoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <div class="row g-5">
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        El <b>c&oacute;digo de Inventario</b> coincide con un Recurso <b>registrado con anterioridad</b>, verifiquelo, si continua el error <b>contacte al administrador</b>.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>    
+                {% endif %}
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label for="inventario" class="input-group-text w-100 btn bg-success"><b>Inventario: </b></label>
+                            {{form.inventario}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un c&oacute;digo de inventario v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="tipo" class="input-group-text w-100 btn bg-success"><b>Tipo: </b></label>
+                            {{form.tipo}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="valor" class="input-group-text w-100 btn bg-success"><b>Centro de Costo: </b></label>
+                            {{form.centro_costo}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="modelo" class="input-group-text w-100 btn bg-success"><b>Modelo: </b></label>
+                            {{form.modelo}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un modelo v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <label for="marca" class="input-group-text w-100 btn bg-success"><b>Marca: </b></label>
+                            {{form.marca}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido una marca v&aacute;lida.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="valor" class="input-group-text w-100 btn bg-success"><b>Valor(MN): </b></label>
+                            {{form.valor}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un valor v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="col-sm-3 mt-0">
+                            <label for="responsable" class="input-group-text w-100 btn bg-success"><b>Responsable: </b></label>
+                            {{form.responsable}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 mt-0">
+                            <label for="estado" class="input-group-text w-100 btn bg-success"><b>Estado T&eacute;cnico: </b></label>
+                            {{form.estado}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 mt-0">
+                            <label for="fecha_entrada" class="input-group-text w-100 btn bg-success"><b>Fecha de Entrada: </b></label>
+                            {{form.fecha_entrada}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido una fecha de entrada v&aacute;lida.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 mt-0">
+                            <label for="fecha_alta" class="input-group-text w-100 btn bg-success"><b>Fecha de Alta: </b></label>
+                            {{form.fecha_alta}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido una fecha de alta v&aacute;lida.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="col-sm-12 mt-0">
+                            <label for="descripcion" class="input-group-text w-100 btn bg-success"><b>Descripci&oacute;n: </b></label>
+                            {{form.descripcion}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido una descripci&oacute;n del recurso v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>    
+                    <button class="w-100 btn btn-success btn-lg" type="submit"><b>Guardar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/ValidVal.js' %}"></script> 
+{% endblock %}

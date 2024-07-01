@@ -1,0 +1,83 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Recursos){% endblock %}
+
+{% block titulo %}Detalles <b class="text-success">Componentes TICs</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'ComponentesList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                <div class="col-sm-4">
+                    <label class="input-group-text w-100 btn bg-success"><b>MAC: </b></label>
+                    <label class="form-control">{{componente.mac}}</label>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text w-100 btn bg-success"><b>Motherboard: </b></label>
+                    <label class="form-control">{{componente.motherboard}}</label>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="input-group-text w-100 btn bg-success"><b>CPU: </b></label>
+                    <label class="form-control">{{componente.cpu}}</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label for="ram_1" class="input-group-text w-100 btn bg-success"><b>Memoria RAM: </b></label>
+                    <label class="form-control">{{componente.ram_1}}</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="input-group-text w-100 btn bg-success"><b>Memoria RAM: </b></label>
+                    <label class="form-control">{{componente.ram_2}}</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="input-group-text w-100 btn bg-success"><b>Memoria RAM: </b></label>
+                    <label class="form-control">{{componente.ram_3}}</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="input-group-text w-100 btn bg-success"><b>Memoria RAM: </b></label>
+                    <label class="form-control">{{componente.ram_4}}</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="input-group-text w-100 btn bg-success"><b>Disco: </b></label>
+                    <label class="form-control">{{componente.disco}}</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="input-group-text w-100 btn bg-success"><b>&Oacute;ptica: </b></label>
+                    <label class="form-control">{{componente.optica}}</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="input-group-text w-100 btn bg-success"><b>Fuente: </b></label>
+                    <label class="form-control">{{componente.fuente}}</label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="input-group-text w-100 btn bg-success"><b>Tarjeta de Video: </b></label>
+                    <label class="form-control">{{componente.video}}</label>
+                </div>
+                <hr class="my-4">
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

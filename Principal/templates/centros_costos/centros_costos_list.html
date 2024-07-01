@@ -1,0 +1,45 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Centros de Costos){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">Centros de Costo</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'CentrosCostosCreate' %}"><b>A&ntilde;adir</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="table-responsive pt-2">
+        <table class="table table-sm" id="example">
+            <thead class="text-dark bg-success">
+                <tr>
+                    <th scope="col" class="col-sm-1">No</th>
+                    <th scope="col" class="col-sm-4">Nombre</th>
+                    <th scope="col" class="col-sm-2">Codigo</th>
+                    <th scope="col" class="col-sm-3">Departamento</th>
+                    <th scope="col" class="col-sm-2">Opciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-dark">
+                {% for centro in centros %}
+                    <tr>
+                        <td><b>{{ forloop.counter }}</b></td>
+                        <td><b>{{ centro.nombre }}</b></td>
+                        <td><b>{{ centro.codigo }}</b></td>
+                        <td><b>{{ centro.departamento }}</b></td>
+                        <td>
+                            <a href="{% url 'CentrosCostosDetail' centro.id %}"><i class="fas fa-eye text-primary"></i></a>
+                            <a href="{% url 'CentrosCostosUpdate' centro.id %}"><i class="fas fa-pen text-success"></i></a>
+                            <a href="{% url 'CentrosCostosDelete' centro.id %}"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

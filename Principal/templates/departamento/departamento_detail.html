@@ -1,0 +1,65 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Centros de Costo){% endblock %}
+
+{% block titulo %}Detalles <b class="text-success">Departamento</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'DepartamentoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Nombre: </b></label>
+                            <label class="form-control">{{ departamento.nombre }}</label>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Sede: </b></label>
+                            <label class="form-control">{{ departamento.sede }}</label>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Area: </b></label>
+                            <label class="form-control">{{ departamento.area }}</label>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Jefe: </b></label>
+                            <label class="form-control">{{ departamento.jefe }}</label>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Supervisor: </b></label>
+                            <label class="form-control">{{ departamento.supervisor }}</label>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="input-group-text w-100 btn bg-success"><b>Responsable: </b></label>
+                            <label class="form-control">{{ departamento.responsable }}</label>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/ValidVal.js' %}"></script>
+{% endblock %}

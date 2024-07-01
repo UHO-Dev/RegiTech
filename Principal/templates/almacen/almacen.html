@@ -1,0 +1,257 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Resumen){% endblock %}
+
+{% block titulo %}<b class="text-success">Almacen de Componentes</b>{% endblock %}
+
+{% block buttons %}
+    <div class="btn-group">
+        <button type="button" class="btn btn-success"><b>A&ntilde;adir</b></button>
+        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'MotherboardCreate' %}"><b>Motherboard</b></a></li>
+          <li><a class="dropdown-item" href="{% url 'CPUCreate' %}"><b>CPU</b></a></li>
+          <li><a class="dropdown-item" href="{% url 'DiscoCreate' %}"><b>Disco</b></a></li>
+          <li><a class="dropdown-item" href="{% url 'OpticaCreate' %}"><b>Unidad &Oacute;ptica</b></a></li>
+          <li><a class="dropdown-item" href="{% url 'FuenteCreate' %}"><b>Fuente</b></a></li>
+          <li><a class="dropdown-item" href="{% url 'VideoCreate' %}"><b>Tarjeta de Video</b></a></li>
+          <li><a class="dropdown-item" href="{% url 'RAMCreate' %}"><b>Memoria RAM</b></a></li>
+        </ul>
+      </div>
+{% endblock %}
+
+{% block main %}
+    <div class="resumen">
+        <div class="row">
+            <nav class="pt-2">
+                <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                    <button class="nav-link active text-success" id="nav-motherboard-tab" data-bs-toggle="tab" data-bs-target="#nav-motherboard" type="button" role="tab" aria-controls="nav-motherboard" aria-selected="true"><i></i><b>Motherboard</b><i></i><span class="badge bg-success">{{ motherboard_c }}</span></button>
+                    <button class="nav-link text-success" id="nav-cpu-tab" data-bs-toggle="tab" data-bs-target="#nav-cpu" type="button" role="tab" aria-controls="nav-cpu" aria-selected="true"><i></i><b>CPU</b><i></i><span class="badge bg-success">{{ cpu_c }}</span></button>
+                    <button class="nav-link text-success" id="nav-disco-tab" data-bs-toggle="tab" data-bs-target="#nav-disco" type="button" role="tab" aria-controls="nav-disco" aria-selected="true"><i></i><b>Disco</b><i></i><span class="badge bg-success">{{ disco_c }}</span></button>
+                    <button class="nav-link text-success" id="nav-optica-tab" data-bs-toggle="tab" data-bs-target="#nav-optica" type="button" role="tab" aria-controls="nav-optica" aria-selected="true"><i></i><b>&Oacute;ptica</b><i></i><span class="badge bg-success">{{ optica_c }}</span></button>
+                    <button class="nav-link text-success" id="nav-fuente-tab" data-bs-toggle="tab" data-bs-target="#nav-fuente" type="button" role="tab" aria-controls="nav-fuente" aria-selected="true"><i></i><b>Fuente</b><i></i><span class="badge bg-success">{{ fuente_c }}</span></button>
+                    <button class="nav-link text-success" id="nav-video-tab" data-bs-toggle="tab" data-bs-target="#nav-video" type="button" role="tab" aria-controls="nav-video" aria-selected="true"><i></i><b>Video</b><i></i><span class="badge bg-success">{{ video_c }}</span></button>
+                    <button class="nav-link text-success" id="nav-ram-tab" data-bs-toggle="tab" data-bs-target="#nav-ram" type="button" role="tab" aria-controls="nav-ram" aria-selected="true"><i></i><b>RAM</b><i></i><span class="badge bg-success">{{ memoria_c }}</span></button>
+                </div>
+            </nav>
+            
+            <div class="tab-content" id="nav-tabContent">
+                <!-- MOTHERBOARD -->
+                <div class="tab-pane fade show active" id="nav-motherboard" role="tabpanel" aria-labelledby="nav-motherboard-tab">
+                    <div class="card-single-chart col-sm-12 d-flex mb-3">
+                        <table class="table table-sm" id="motherboard">
+                            <thead class="text-dark bg-success">
+                                <tr>
+                                    <th scope="col" class="col-sm-1">No</th>
+                                    <th scope="col" class="col-sm-3">Marca</th>
+                                    <th scope="col" class="col-sm-3">Modelo</th>
+                                    <th scope="col" class="col-sm-3">Serie</th>
+                                    <th scope="col" class="col-sm-2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-dark">
+                                {% for m in motherboard %}
+                                    <tr>
+                                        <td><b>{{ forloop.counter }}</b></td>
+                                        <td><b>{{ m.marca }}</b></td>
+                                        <td><b>{{ m.modelo }}</b></td>
+                                        <td><b>{{ m.serie }}</b></td>
+                                        <td>
+                                            <a href="{% url 'MotherboardUpdate' m.id %}"><i class="fas fa-pen text-success"></i></a>
+                                            <a href="{% url 'MotherboardDelete' m.id %}"><i class="fas fa-trash text-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- CPU -->
+                <div class="tab-pane fade" id="nav-cpu" role="tabpanel" aria-labelledby="nav-cpu-tab">
+                    <div class="card-single-chart col-sm-12 d-flex mb-3">
+                        <table class="table table-sm" id="cpu">
+                            <thead class="text-dark bg-success">
+                                <tr>
+                                    <th scope="col" class="col-sm-1">No</th>
+                                    <th scope="col" class="col-sm-3">Marca</th>
+                                    <th scope="col" class="col-sm-3">Nombre</th>
+                                    <th scope="col" class="col-sm-3">Serie</th>
+                                    <th scope="col" class="col-sm-2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-dark">
+                                {% for c in cpu %}
+                                    <tr>
+                                        <td><b>{{ forloop.counter }}</b></td>
+                                        <td><b>{{ c.marca }}</b></td>
+                                        <td><b>{{ c.nombre }}</b></td>
+                                        <td><b>{{ c.serie }}</b></td>
+                                        <td>
+                                            <a href="{% url 'CPUUpdate' c.id %}"><i class="fas fa-pen text-success"></i></a>
+                                            <a href="{% url 'CPUDelete' c.id %}"><i class="fas fa-trash text-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- DISCO -->
+                <div class="tab-pane fade" id="nav-disco" role="tabpanel" aria-labelledby="nav-cpu-tab">
+                    <div class="card-single-chart col-sm-12 d-flex mb-3">
+                        <table class="table table-sm" id="disco">
+                            <thead class="text-dark bg-success">
+                                <tr>
+                                    <th scope="col" class="col-sm-1">No</th>
+                                    <th scope="col" class="col-sm-3">Marca</th>
+                                    <th scope="col" class="col-sm-3">Modelo</th>
+                                    <th scope="col" class="col-sm-3">Serie</th>
+                                    <th scope="col" class="col-sm-2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-dark">
+                                {% for d in disco %}
+                                    <tr>
+                                        <td><b>{{ forloop.counter }}</b></td>
+                                        <td><b>{{ d.marca }}</b></td>
+                                        <td><b>{{ d.modelo }}</b></td>
+                                        <td><b>{{ d.serie }}</b></td>
+                                        <td>
+                                            <a href="{% url 'DiscoUpdate' d.id %}"><i class="fas fa-pen text-success"></i></a>
+                                            <a href="{% url 'DiscoDelete' d.id %}"><i class="fas fa-trash text-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- OPTICA -->
+                <div class="tab-pane fade" id="nav-optica" role="tabpanel" aria-labelledby="nav-optica-tab">
+                    <div class="card-single-chart col-sm-12 d-flex mb-3">
+                        <table class="table table-sm" id="optica">
+                            <thead class="text-dark bg-success">
+                                <tr>
+                                    <th scope="col" class="col-sm-1">No</th>
+                                    <th scope="col" class="col-sm-3">Marca</th>
+                                    <th scope="col" class="col-sm-3">Modelo</th>
+                                    <th scope="col" class="col-sm-3">Serie</th>
+                                    <th scope="col" class="col-sm-2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-dark">
+                                {% for o in optica %}
+                                    <tr>
+                                        <td><b>{{ forloop.counter }}</b></td>
+                                        <td><b>{{ o.marca }}</b></td>
+                                        <td><b>{{ o.modelo }}</b></td>
+                                        <td><b>{{ o.serie }}</b></td>
+                                        <td>
+                                            <a href="{% url 'OpticaUpdate' o.id %}"><i class="fas fa-pen text-success"></i></a>
+                                            <a href="{% url 'OpticaDelete' o.id %}"><i class="fas fa-trash text-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- FUENTE -->
+                <div class="tab-pane fade" id="nav-fuente" role="tabpanel" aria-labelledby="nav-fuente-tab">
+                    <div class="card-single-chart col-sm-12 d-flex mb-3">
+                        <table class="table table-sm" id="fuente">
+                            <thead class="text-dark bg-success">
+                                <tr>
+                                    <th scope="col" class="col-sm-1">No</th>
+                                    <th scope="col" class="col-sm-3">Marca</th>
+                                    <th scope="col" class="col-sm-3">Modelo</th>
+                                    <th scope="col" class="col-sm-3">Serie</th>
+                                    <th scope="col" class="col-sm-2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-dark">
+                                {% for f in fuente %}
+                                    <tr>
+                                        <td><b>{{ forloop.counter }}</b></td>
+                                        <td><b>{{ f.marca }}</b></td>
+                                        <td><b>{{ f.modelo }}</b></td>
+                                        <td><b>{{ f.serie }}</b></td>
+                                        <td>
+                                            <a href="{% url 'FuenteUpdate' f.id %}"><i class="fas fa-pen text-success"></i></a>
+                                            <a href="{% url 'FuenteDelete' f.id %}"><i class="fas fa-trash text-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- VIDEO -->
+                <div class="tab-pane fade" id="nav-video" role="tabpanel" aria-labelledby="nav-video-tab">
+                    <div class="card-single-chart col-sm-12 d-flex mb-3">
+                        <table class="table table-sm" id="video">
+                            <thead class="text-dark bg-success">
+                                <tr>
+                                    <th scope="col" class="col-sm-1">No</th>
+                                    <th scope="col" class="col-sm-3">Marca</th>
+                                    <th scope="col" class="col-sm-3">Modelo</th>
+                                    <th scope="col" class="col-sm-3">Serie</th>
+                                    <th scope="col" class="col-sm-2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-dark">
+                                {% for v in video %}
+                                    <tr>
+                                        <td><b>{{ forloop.counter }}</b></td>
+                                        <td><b>{{ v.marca }}</b></td>
+                                        <td><b>{{ v.modelo }}</b></td>
+                                        <td><b>{{ v.serie }}</b></td>
+                                        <td>
+                                            <a href="{% url 'VideoUpdate' v.id %}"><i class="fas fa-pen text-success"></i></a>
+                                            <a href="{% url 'VideoDelete' v.id %}"><i class="fas fa-trash text-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- RAM -->
+                <div class="tab-pane fade" id="nav-ram" role="tabpanel" aria-labelledby="nav-ram-tab">
+                    <div class="card-single-chart col-sm-12 d-flex mb-3">
+                        <table class="table table-sm" id="ram">
+                            <thead class="text-dark bg-success">
+                                <tr>
+                                    <th scope="col" class="col-sm-1">No</th>
+                                    <th scope="col" class="col-sm-3">Marca</th>
+                                    <th scope="col" class="col-sm-1">Tipo</th>
+                                    <th scope="col" class="col-sm-3">Serie</th>
+                                    <th scope="col" class="col-sm-2">Capacidad (Mb)</th>
+                                    <th scope="col" class="col-sm-2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-dark">
+                                {% for m in memoria %}
+                                    <tr>
+                                        <td><b>{{ forloop.counter }}</b></td>
+                                        <td><b>{{ m.marca }}</b></td>
+                                        <td><b>{{ m.tipo }}</b></td>
+                                        <td><b>{{ m.serie }}</b></td>
+                                        <td><b>{{ m.capacidad }}</b></td>
+                                        <td>
+                                            <a href="{% url 'RAMUpdate' m.id %}"><i class="fas fa-pen text-success"></i></a>
+                                            <a href="{% url 'RAMDelete' m.id %}"><i class="fas fa-trash text-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

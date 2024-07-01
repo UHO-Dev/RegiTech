@@ -1,0 +1,68 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Estado T&eacute;cnico){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">Estados T&eacute;cnico</b>{% endblock %}
+
+{% block main %}
+    <div class="row pt-2">  
+        <div class="col-sm-1"></div>
+        <div class="table-responsive col-sm-10">
+            <table class="table table-sm" id="example">
+                <thead class="text-dark bg-success">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Inventario</th>
+                        <th scope="col" class="col-sm-6">Departamento</th>
+                        <th scope="col">Estado T&eacute;cnico</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-dark">
+                    {% for recurso in recursos %}
+                        <tr>
+                            <td><b>{{ forloop.counter }}</b></td>
+                            <td><b>{{ recurso.inventario }}</b></td>
+                            <td><b>{{ recurso.centro_costo }}</b></td>
+                            <td><b>
+                                {% if recurso.estado == 'Funcionando' %}
+                                    <span class="badge bg-success rounded-pill text-white">
+                                        {{ recurso.estado }}
+                                    </span>
+                                {% elif recurso.estado == 'Roto' %}
+                                    <span class="badge bg-warning rounded-pill text-dark">
+                                        {{ recurso.estado }}
+                                    </span>
+                                {% elif recurso.estado == 'Solicitud de Baja' %}
+                                    <span class="badge bg-danger rounded-pill text-white">
+                                        {{ recurso.estado }}
+                                    </span>
+                                {% elif recurso.estado == 'Stock' %}
+                                    <span class="badge bg-primary rounded-pill text-white">
+                                        {{ recurso.estado }}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-black rounded-pill text-white">
+                                        {{ recurso.estado }}
+                                    </span>
+                                {% endif %}
+                                </b>
+                            </td>
+                            <td>
+                                {% if recurso.aprobacion != 'Aprobado' %}
+                                    <a href="{% url 'EstadoTecnicoUpdate' recurso.id %}"><i class="fas fa-pen text-success"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

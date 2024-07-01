@@ -1,0 +1,50 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Mantenimiento){% endblock %}
+
+{% block titulo %}Listado de <b class="text-success">Solicitud de Bajas</b>{% endblock %}
+
+{% block buttons %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="row pt-2">  
+        <div class="table-responsive">
+            <table class="table table-sm col-sm-10" id="example">
+                <thead class="text-dark bg-success">
+                    <tr>
+                        <th scope="col" class="col-sm-1">No</th>
+                        <th scope="col" class="col-sm-1">Inventario</th>
+                        <th scope="col" class="col-sm-1">Tipo</th>
+                        <th scope="col" class="col-sm-3">Ubicacion</th>
+                        <th scope="col" class="col-sm-2">Fecha Entrada</th>
+                        <th scope="col" class="col-sm-3">Responsable</th>
+                        <th scope="col" class="col-sm-1">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-dark">
+                    {% for baja in exp_baja %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ baja.inventario }}</td>
+                            <td>{{ baja.tipo }}</td>
+                            <td>{{ baja.centro_costo }}</td>
+                            <td>{{ baja.fecha_entrada }}</td>
+                            <td>{{ baja.responsable }}</td>
+                            <td>
+                                <a href="#"><i class="fas fa-clipboard text-success"></i></a>
+                                <a href="#"><i class="fas fa-trash text-danger"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

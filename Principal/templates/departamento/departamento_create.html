@@ -1,0 +1,90 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Centros de Costo){% endblock %}
+
+{% block titulo %}A&ntilde;adir <b class="text-success">Departamento</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'DepartamentoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                {% if msg %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{msg}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>    
+                {% endif %}
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label for="nombre" class="input-group-text w-100 btn bg-success"><b>Nombre: </b></label>
+                            {{form.nombre}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un nombre v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="sede" class="input-group-text w-100 btn bg-success"><b>Sede: </b></label>
+                            {{form.sede}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="area" class="input-group-text w-100 btn bg-success"><b>Area: </b></label>
+                            {{form.area}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="jefe" class="input-group-text w-100 btn bg-success"><b>Jefe de Area: </b></label>
+                            {{form.jefe}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="supervisor" class="input-group-text w-100 btn bg-success"><b>Supervisor: </b></label>
+                            {{form.supervisor}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="responsable" class="input-group-text w-100 btn bg-success"><b>Responsable: </b></label>
+                            {{form.responsable}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+                    <button class="w-100 btn btn-success btn-lg mt-0" type="submit"><b>Registrar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/ValidVal.js' %}"></script>
+{% endblock %}

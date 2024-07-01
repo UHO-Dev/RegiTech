@@ -1,0 +1,56 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Incidencias){% endblock %}
+
+{% block titulo %}Detalles <b class="text-success">Incidencia</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'IncidenciasList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                <div class="col-sm-6">
+                    <label class="input-group-text btn w-100 bg-success"><b>Inventario: </b></label>
+                    <label class="form-control">{{ incidencias.inventario }}</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="input-group-text btn w-100 bg-success"><b>Tipo: </b></label>
+                    <label class="form-control">{{ incidencias.tipo }}</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="input-group-text btn w-100 bg-success"><b>Nombre: </b></label>
+                    <label class="form-control">{{ incidencias.nombre }}</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="input-group-text btn w-100 bg-success"><b>Fecha: </b></label>
+                    <label class="form-control">{{ incidencias.fecha }}</label>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="col-12 mt-0">
+                    <label class="input-group-text btn w-100 bg-success"><b>Descripci&oacute;n: </b></label>
+                    <label class="form-control">{{ incidencias.descripcion }}</label>  
+                </div>
+        
+                <hr class="my-4">
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

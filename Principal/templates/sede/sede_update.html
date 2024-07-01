@@ -1,0 +1,57 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Centros de Costos){% endblock %}
+
+{% block titulo %}Editar <b class="text-success">Sede Universitaria</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'SedeList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <div class="row g-5">
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        El <b>c&oacute;digo de Inventario</b> coincide con un Recurso <b>registrado con anterioridad</b>, verifiquelo, si continua el error <b>contacte al administrador</b>.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>    
+                {% endif %}
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-6">
+                            <label for="nombre" class="input-group-text w-100 btn bg-success"><b>Sede: </b></label>
+                            {{form.nombre}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="responsable_soporte" class="input-group-text w-100 btn bg-success"><b>Responsable: </b></label>
+                            {{form.responsable_soporte}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>    
+                    <button class="w-100 btn btn-success btn-lg" type="submit"><b>Guardar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/ValidVal.js' %}"></script> 
+{% endblock %}

@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Base{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}">
+  	<link rel="stylesheet" href="{% static 'libs/datatable/css/dataTables.bootstrap5.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/datatable/css/buttons.bootstrap5.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/datatable/css/responsive.bootstrap5.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/webfonts/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base_model.css' %}">
+    {% block css %}
+    
+    {% endblock %}
+</head>
+<body class="w-100 text-dark">
+    <style type="text/css">
+        ::-webkit-scrollbar {
+            display: none;
+    }
+    </style>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#"><b>UHo</b> RegiTech</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="form-control w-100 rounded-0 border-0 form-control-dark">
+            <b class="text-white">GESTI&Oacute;N DE <cite class="text-success">TECNOLOG&Iacute;AS DE INFORMACI&Oacute;N Y COMUNICACI&Oacute;N</cite>.</b>
+        </div>
+    </header>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="modal-label">Confirmaci&oacute;n</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-dark">
+                    Est&aacute;s seguro que desea <b>Cerrar Sesi&oacute;n</b>?
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-success" href="{% url 'logout' %}"><b>Acceptar</b></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse" style="background: linear-gradient(#198754, #0d6efd)">
+                <div class="position-sticky sidebar-sticky">
+                    <ul class="nav flex-column mb-auto">
+                        {% if user.is_superuser %}
+                            <a class="btn btn-primary text-white" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#admin-collapse" aria-controls="contents-collapse">
+                                <i class="fas fa-user text-white"></i><b>Administraci&oacute;n <i class="fas fa-angle-down text-white"></i></b>
+                            </a>
+                            <ul class="list-unstyled ps-3 collapse" id="admin-collapse">
+                                <li>
+                                    <a href="{% url 'AdminSite' %}" class="nav-link text-white {% if 'Usuarios' in section %}active {% endif %}">
+                                        <i class="fas fa-user text-white"></i> <b>Usuarios</b>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'TipoRecursoList' %}" class="nav-link text-white {% if 'Tipo' in section %}active {% endif %}">
+                                        <i class="fas fa-gear text-white"></i> <b>Tipos de Recursos</b>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'CentroCostoList' %}" class="nav-link text-white {% if 'Ubicacion' in section %}active {% endif %}">
+                                        <i class="fas fa-map-marker text-white"></i> <b>Centros de Costo</b>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'AlmacenList' %}" class="nav-link text-white {% if 'Almacen' in section %}active {% endif %}">
+                                        <i class="fas fa-box text-white"></i> <b>Componentes</b>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'TipoOrdenList' %}" class="nav-link text-white {% if 'Orden' in section %}active {% endif %}">
+                                        <i class="fas fa-clipboard text-white"></i> <b>Tipo Orden</b>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'TipoIncidenciaList' %}" class="nav-link text-white {% if 'Incidencia' in section %}active {% endif %}">
+                                        <i class="fas fa-hand text-white"></i> <b>Tipo Incidencia</b>
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                        <li>
+                            <a href="{% url 'Estadisticas' %}" class="nav-link text-white mt-3 {% if section == 'Main' %}active {% endif %}">
+                                <i class="fas fa-dashboard text-white"></i> <b>Inicio</b>
+                            </a>
+                        </li>
+                        <li class="mt-3">
+                            <a  class="nav-link text-white {% if 'Recursos' in section %}active {% endif %}" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#cc-collapse" aria-controls="contents-collapse">
+                                <i class="fas fa-map-marker text-white"></i> <b>Centros Costos <i class="fas fa-angle-down text-white"></i></b>
+                            </a>
+                        </li>
+                        <ul class="list-unstyled ps-3 collapse" id="cc-collapse">
+                            <li>
+                                <a href="{% url 'SedeList' %}" class="nav-link text-white {% if section == 'Recursos' %}active {% endif %}">
+                                    <i class="fas fa-map-marker text-white"></i> <b>Sede</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'AreaList' %}" class="nav-link text-white {% if 'Responsable' in section %}active {% endif %}">
+                                    <i class="fas fa-map-marker text-white"></i> <b>Area</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'DepartamentoList' %}" class="nav-link text-white {% if 'Estado' in section %}active {% endif %}">
+                                    <i class="fas fa-map-marker text-white"></i> <b>Departamento</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'CentrosCostosList' %}" class="nav-link text-white {% if 'Suministrador' in section %}active {% endif %}">
+                                    <i class="fas fa-map-marker text-white"></i> <b>Centros de Costo</b>
+                                </a>
+                            </li>
+                        </ul>
+                        <li class="mt-3">
+                            <a  class="nav-link text-white {% if 'Recursos' in section %}active {% endif %}" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#recursos-collapse" aria-controls="contents-collapse">
+                                <i class="fas fa-box text-white"></i> <b>Recursos TIC <i class="fas fa-angle-down text-white"></i></b>
+                            </a>
+                        </li>
+                        <ul class="list-unstyled ps-3 collapse" id="recursos-collapse">
+                            <li>
+                                <a href="{% url 'RecursoList' %}" class="nav-link text-white {% if section == 'Recursos' %}active {% endif %}">
+                                    <i class="fas fa-box text-white"></i> <b>Recursos</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'ResponsableList' %}" class="nav-link text-white {% if 'Responsable' in section %}active {% endif %}">
+                                    <i class="fas fa-user text-white"></i> <b>Responsable</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'EstadoTecnicoList' %}" class="nav-link text-white {% if 'Estado' in section %}active {% endif %}">
+                                    <i class="fas fa-recycle text-white"></i> <b>Estado T&eacute;cnico</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'SuministradorList' %}" class="nav-link text-white {% if 'Suministrador' in section %}active {% endif %}">
+                                    <i class="fas fa-user text-white"></i> <b>Suministrador</b>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <li>
+                            <a  class="nav-link text-white {% if 'Soporte' in section %}active {% endif %}" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#mantenimiento-collapse" aria-controls="contents-collapse">
+                                <i class="fas fa-wrench text-white"></i> <b>Mantenimiento <i class="fas fa-angle-down text-white"></i></b>
+                            </a>
+                        </li>
+                        <ul class="list-unstyled ps-3 collapse" id="mantenimiento-collapse">
+                            <li>
+                                <a href="{% url 'OrdenServicioList' %}" class="nav-link text-white {% if 'Orden' in section %}active {% endif %}">
+                                    <i class="fas fa-clipboard text-white"></i> <b>Orden de Servicio</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'MantenimientoList' %}" class="nav-link text-white {% if 'Mantenimiento' in section %}active {% endif %}">
+                                    <i class="fas fa-wrench text-white"></i> <b>Mantenimiento</b>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <li>
+                            <a  class="nav-link text-white {% if 'Aprobacion' in section %}active {% endif %}" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#pendientes-collapse" aria-controls="contents-collapse">
+                                <i class="fas fa-check-square text-white"></i> <b>Aprobaci&oacute;n <i class="fas fa-angle-down text-white"></i></b>
+                            </a>
+                        </li>
+                        <ul class="list-unstyled ps-3 collapse" id="pendientes-collapse">
+                            <li>
+                                <a href="{% url 'ExpedientePendientes' %}" class="nav-link text-white {% if 'Pendientes' in section %}active {% endif %}">
+                                    <i class="fas fa-check-square text-white"></i> <b>Pendientes</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'ExpedientesRevisados' %}" class="nav-link text-white {% if 'Revisados' in section %}active {% endif %}">
+                                    <i class="fas fa-check text-white"></i> <b>Revisados</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'DictamenTecnicoList' %}" class="nav-link text-white {% if 'Dictamen' in section %}active {% endif %}">
+                                    <i class="fas fa-trash text-white"></i> <b>Solicitud Baja</b>
+                                </a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="{% url 'IncidenciasList' %}" class="nav-link text-white {% if 'Incidencias' in section %}active {% endif %}">
+                                <i class="fas fa-hand text-white"></i> <b>Incidencias</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'ComponentesList' %}" class="nav-link text-white {% if 'Expedientes' in section %}active {% endif %}">
+                                <i class="fas fa-clipboard text-white"></i> <b>Expedientes</b>
+                            </a>
+                        </li>
+                        <hr>
+                        <li>
+                            <a class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#modalConfirm">
+                                <i class="fas fa-sign-out text-danger"></i> <b>Cerrar Sesi&oacute;n</b>
+                            </a>
+                        </li>
+                        <hr>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h2>RegiTech (UHo)</h2>
+                    <div class="mb-2 mb-md-0">
+                        <div class="me-2">
+                            {% block buttons %} {% endblock %}
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="seccion mb-3">{% block titulo %} Base {% endblock %}</h2>
+		
+                {% block main %}
+                    <h1>Bloque de Contenido</h1>
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+    
+    {% block scripts %}
+    
+    {% endblock %}
+    <script src="{% static 'libs/bootstrap/js/jquery.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+	<!--DataTables-->
+    <script src="{% static 'libs/datatable/js/jquery-3.7.1.js' %}"></script>   
+    <script src="{% static 'libs/datatable/js/dataTables.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/dataTables.bootstrap5.js' %}"></script>
+	<!--Botones DataTables-->
+    <script src="{% static 'libs/datatable/js/dataTables.buttons.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/buttons.bootstrap5.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/jszip.min.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/pdfmake.min.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/vfs_fonts.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/bottons.colVis.min.js' %}"></script>
+	<!--DataTables responsivo-->
+    <script src="{% static 'libs/datatable/js/dataTables.responsive.js' %}"></script>
+    <script src="{% static 'libs/datatable/js/responsive.bootstrap5.js' %}"></script>
+	<!--Inicializar DataTables-->
+    <script src="{% static 'libs/datatable/js/newTable.js' %}"></script>
+</body>
+</html>

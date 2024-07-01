@@ -1,0 +1,110 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Mantenimiento){% endblock %}
+
+{% block titulo %}Editar <b class="text-success">Mantenimiento TICs</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'MantenimientoList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                                        <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label for="inventario" class="input-group-text w-100 btn bg-success"><b>Inventario: </b></label>
+                            {{form.inventario}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione el c&oacute;digo de inventario del recurso.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="orden" class="input-group-text w-100 btn bg-success"><b>Orden de Servicio: </b></label>
+                            {{form.orden}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione la orden de servicio del mantenimiento.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="responsable" class="input-group-text w-100 btn bg-success"><b>Responsable: </b></label>
+                            {{form.responsable}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Introduzca el responsable del mantenimiento.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="sello_quitado" class="input-group-text w-100 btn bg-success"><b>Sello Quitado: </b></label>
+                            {{form.sello_quitado}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Inserte el sello quitado del recurso.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="sello_puesto" class="input-group-text w-100 btn bg-success"><b>Sello Puesto: </b></label>
+                            {{form.sello_puesto}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Insete el sello nuevo.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="tipo_mantenimiento" class="input-group-text w-100 btn bg-success"><b>Tipo de Mantenimiento: </b></label>
+                            {{form.tipo_mantenimiento}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="col-sm-12 mt-0">
+                            <label for="datos_pieza" class="input-group-text w-100 btn bg-success"><b>Datos de la Pieza: </b></label>
+                            {{form.datos_pieza}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Introdusca una descripci&oacute;n de las piezas reemplazadas.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="participantes" class="input-group-text w-100 btn bg-success"><b>Participantes: </b></label>
+                            {{form.participantes}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Introdusca al menos un participante del mantenimiento.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="descripcion" class="input-group-text w-100 btn bg-success"><b>Descripci&oacute;n: </b></label>
+                            {{form.descripcion}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido una descripci&oacute;n del mantenimiento.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+                    <button class="w-100 btn btn-success btn-lg" type="submit"><b>Guardar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/ValidValor.js' %}"></script>
+{% endblock %}

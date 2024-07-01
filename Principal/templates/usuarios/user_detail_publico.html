@@ -1,0 +1,124 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Usuario){% endblock %}
+
+{% block titulo %}
+    Detalles del Usuario <a class="btn btn-secondary"><b><i class="fas fa-user-circle"></i> {{ user.username | upper }}</b></a>
+    <a class="btn btn-warning" href="{% url 'PasswordChange' %}" ><b><i class="fas fa-key"></i></b></a>
+    <a class="btn btn-success" href="{% url 'PerfilUpdate' user.pk %}" ><b><i class="fas fa-user-pen"></i></b></a>
+{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'Estadisticas' %}"><b>Inicio</b></a>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <main>
+            <hr class="my-4 mb-0">
+            <div class="row g-5">
+                <div class="row g-5">
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Nombre: </b></label>
+                        <label class="form-control">{{ perfil.first_name }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Apellidos: </b></label>
+                        <label class="form-control">{{ perfil.last_name }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Nombre de Usuario: </b></label>
+                        <label class="form-control">
+                            {{ perfil.username }}
+                            {% if perfil.rol == "Administrador" %}
+                                <span class="badge bg-warning">
+                                    {{ perfil.rol }}
+                                </span>
+                            {% elif perfil.rol == "Soporte Tecnico" %}
+                                <span class="badge bg-success">
+                                    {{ perfil.rol }}
+                                </span>
+                            {% elif perfil.rol == "Responsable" %}
+                                <span class="badge bg-primary">
+                                    {{ perfil.rol }}
+                                </span>
+                            {% elif perfil.rol == "Supervisor" %}
+                                <span class="badge bg-secondary">
+                                    {{ perfil.rol }}
+                                </span>
+                            {% elif perfil.rol == "Jefe de Area" %}
+                                <span class="badge bg-info">
+                                    {{ perfil.rol }}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-white text-dark">
+                                    {{ perfil.rol }}
+                                </span>
+                            {% endif %}
+                        </label>
+                    </div>
+
+                    <hr class="my-4 mb-0">
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Correo Electr&oacute;nico: </b></label>
+                        <label class="form-control">{{ perfil.email }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Ultimo Acceso: </b></label>
+                        <label class="form-control">{{ perfil.last_login }}</label>    
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Fecha Registro: </b></label>
+                        <label class="form-control">{{ perfil.date_joined.date }}</label>
+                    </div>
+
+                    <hr class="my-4 mb-0">
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Carnet de Identidad: </b></label>
+                        <label class="form-control">{{ perfil.ci }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Area: </b></label>
+                        <label class="form-control">{{ perfil.area }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Cargo: </b></label>
+                        <label class="form-control">{{ perfil.cargo }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Tel&eacute;fono: </b></label>
+                        <label class="form-control">{{ perfil.telefono }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Celular: </b></label>
+                        <label class="form-control">{{ perfil.celular }}</label>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="input-group-text w-100 btn bg-success"><b>Whatsapp: </b></label>
+                        <label class="form-control">{{ perfil.whatsapp }}</label>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

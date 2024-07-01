@@ -1,0 +1,131 @@
+{% extends 'base_model.html' %}
+{% load static %}
+
+{% block title %}RegiTech UHo(Recurso){% endblock %}
+
+{% block titulo %}A&ntilde;adir <b class="text-success">Expediente TICs</b>{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-success" href="{% url 'ComponentesList' %}"><b>Listado</b></a>
+{% endblock %}
+
+{% block main %} 
+    <div class="container">
+        <main>
+            <hr class="my-4">
+            <div class="row g-5">
+                {% if msg %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{msg}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>    
+                {% endif %}
+                <form class="needs-validation" novalidate method="POST">
+                    {% csrf_token %}
+                    <div class="row g-5">
+                        <div class="col-sm-4">
+                            <label for="mac" class="input-group-text w-100 btn bg-success"><b>MAC: </b></label>
+                            {{form.mac}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Es requerido un c&oacute;digo MAC v&aacute;lido.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="motherboard" class="input-group-text w-100 btn bg-success"><b>Motherboard: </b></label>
+                            {{form.motherboard}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="cpu" class="input-group-text w-100 btn bg-success"><b>CPU: </b></label>
+                            {{form.cpu}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="ram_1" class="input-group-text w-100 btn bg-success"><b>Memoria RAM: </b></label>
+                            {{form.ram_1}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="ram_2" class="input-group-text w-100 btn bg-success"><b>Memoria RAM: </b></label>
+                            {{form.ram_2}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="ram_3" class="input-group-text w-100 btn bg-success"><b>Memoria RAM: </b></label>
+                            {{form.ram_3}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="ram_4" class="input-group-text w-100 btn bg-success"><b>Memoria RAM: </b></label>
+                            {{form.ram_4}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <label for="disco" class="input-group-text w-100 btn bg-success"><b>Disco: </b></label>
+                            {{form.disco}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="optica" class="input-group-text w-100 btn bg-success"><b>&Oacute;ptica: </b></label>
+                            {{form.optica}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="fuente" class="input-group-text w-100 btn bg-success"><b>Fuente: </b></label>
+                            {{form.fuente}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="video" class="input-group-text w-100 btn bg-success"><b>Tarjeta de Video: </b></label>
+                            {{form.video}}
+                            <div class="invalid-feedback">
+                                <b class="text-danger">Seleccione una opci&oacute;n.</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                    </div>
+                    <button class="w-100 btn btn-success btn-lg mt-0" type="submit"><b>Registrar</b></button>
+                </form>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-dark text-center text-small">
+            <p class="mb-1">&copy; 2023–2024 Universidad de Holgu&iacute;n</p>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/ValidVal.js' %}"></script>
+{% endblock %}
